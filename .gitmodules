@@ -1,0 +1,3 @@
+[submodule "DUGseis"]
+	path = DUGseis
+	url = https://github.com/swiss-seismological-service/DUGseis.git
