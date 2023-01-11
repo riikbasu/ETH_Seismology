@@ -120,11 +120,15 @@ ax_amp_sp = fig.add_subplot(2, 1, 1)
 freq = np.linspace(0, fNy, len(trace_f))  # frequency axis for plotting
 ax_amp_sp.plot(freq, abs(trace_f), 'k', label="Original frequencies")
 plt.ylabel('Amplitude')
+plt.yscale('log')
+plt.xscale('log')
+
 
 ax_ph_sp = fig.add_subplot(2, 1, 2)
 ax_ph_sp.plot(freq, np.angle(trace_f), 'r')
 plt.ylabel('Phase')
 plt.xlabel('Frequency [Hz]')
+plt.xscale('log')
 plt.show()
 
 # Spectrogram of the short data
