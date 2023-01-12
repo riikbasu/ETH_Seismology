@@ -49,7 +49,7 @@ util.setup_logging_to_file(
 logger = logging.getLogger(__name__)
 
 # Load the DUGSeis project.
-project = DUGSeisProject(config="run_processing_FEAR_stations.yaml")
+project = DUGSeisProject(config="run_processing_FEAR_stations_full_workflow.yaml")
 
 # Helper function to compute intervals over the project.
 # intervals = util.compute_intervals(

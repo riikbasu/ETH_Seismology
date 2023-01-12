@@ -5,6 +5,7 @@ from obspy import UTCDateTime
 import matplotlib.pyplot as plt
 import obspy
 import numpy as np
+from scipy import signal
 
 # Import from the DUGSeis library.
 from DUGseis.dug_seis.project.project import DUGSeisProject
@@ -18,31 +19,28 @@ from DUGseis.dug_seis.plotting.plotting import (
 )
 
 # Synthetic Dataset Workflow
+
+# Create Sinusoid Signal
 start_time = 0
 end_time = 1
 sampling = 0.01
 time = np.arange(start_time, end_time, sampling)
 Amplitude = 20
 frequency = 5
-signal = Amplitude*np.sin(2*np.pi*frequency*time)
-fig = plt.figure()
+signal_sin = Amplitude * np.sin(2 * np.pi * frequency * time)
 
 #Plot
+fig = plt.figure()
 ax = fig.add_subplot(3, 1, 1)
-ax.plot(time, signal, "b-")
-ax.xaxis_date()
-fig.autofmt_xdate()
+ax.plot(time, signal_sin, "b-")
 plt.ylabel('Amplitude')
-plt.xlabel('Time [hh:mm:ss:msec]')
+plt.xlabel('Time')
 plt.title('Input Waveform Time Series - Sinusoid')
 
-# Amplitude and Phase Spectra of the long data
+# Amplitude and Phase Spectra
 df = 1/sampling  # Sampling Rate
 fNy = df / 2.0  # Nyquist frequency
-trace_f = np.fft.rfft(signal)  # transform the signal into frequency domain
-frame1 = plt.gca()
-frame1.axes.get_xaxis().set_visible(False)
-frame1.axes.get_yaxis().set_visible(False)
+trace_f = np.fft.rfft(signal_sin) * sampling * 2 # transform the signal into frequency domain
 ax_amp_sp = fig.add_subplot(3, 1, 2)
 freq = np.linspace(0, fNy, len(trace_f))  # frequency axis for plotting
 ax_amp_sp.plot(freq, abs(trace_f), 'k', label="Original frequencies")
@@ -54,11 +52,11 @@ plt.ylabel('Phase')
 plt.xlabel('Frequency [Hz]')
 plt.show()
 
-# Spectrogram of the long data
-# signal.spectrogram(log=True, title="Spectrogram of the Sinusoid", cmap='plasma')
+# Spectrogram
+signal_sin.spectrogram(log=True, title="Spectrogram of the Sinusoid", cmap='plasma')
 
 # # Load the DUGSeis project.
-# project = DUGSeisProject(config="/home/ribasu/ETH_Seismology/DUGseis/scripts/load_and_analyse_prelimAE_waveforms.yaml")
+# project = DUGSeisProject(config="load_and_analyse_prelimAE_waveforms.yaml")
 #
 # # Long Data Parameters
 # start_time_long = '2022-12-07T12:00:00.00000Z'
