@@ -19,7 +19,7 @@ local_coordinate_system:
 paths:
   # A list of folders with the waveform files as ASDF files.
   asdf_folders:
-    - '/bedrettolab/E2_waveforms/waveforms/raw/continuous-01-bedretto/2022/341'
+    - '/bedrettolab/E2_waveforms/waveforms/raw/continuous-01-bedretto/2022/339'
   # Folder with the corresponding StationXML files.
   stationxml_folders:
     - '/home/ribasu/auxiliary_data_DUGSeis/stationXMLs/conti01'
@@ -31,8 +31,8 @@ paths:
 # Temporal range of the experiment. All parts of DUGSeis will only use data in
 # that range.
 temporal_range:
-  start_time: 2022-12-07T12:00:00.000000Z
-  end_time: 2022-12-07T12:15:00.000000Z
+  start_time: 2022-12-05T18:30:00.000000Z
+  end_time: 2022-12-05T18:45:00.000000Z
 
 # Some settings affecting the graphical interface.
 graphical_interface:
